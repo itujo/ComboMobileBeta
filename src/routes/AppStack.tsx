@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from '../pages/Login/Login';
-import OtherPage from '../pages/OtherPage';
+import SearchDocs from '../pages/SearchDocs/test';
 import Header from '../components/Header';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -20,12 +20,12 @@ const Routes: React.FC = () => (
     >
       <Screen name="Login" component={Login} />
       <Screen
-        name="OtherPage"
-        component={OtherPage}
+        name="SearchDocs"
+        component={SearchDocs}
         options={{
           headerShown: true,
           header: (props) => (
-            <Header title="Outra página" showCancel={false} {...props} />
+            <Header title="Buscar Documentos" showCancel={false} {...props} />
           ),
         }}
       />
