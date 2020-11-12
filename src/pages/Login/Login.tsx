@@ -1,15 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
-/* eslint-disable global-require */
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text } from 'react-native';
+import { ActivityIndicator, Image, Route, Text } from 'react-native';
 import api from '../../services/api';
 
-import { Button, Container, Input, Logo, TextButton } from './style';
+import { Button, Container, Input, TextButton } from './style';
 
-const Login: React.FC = ({ route }: any) => {
+import logo from '../../../assets/logo.png';
+
+const Login: React.FC = ({ route }: Route) => {
   const [textUser, setTextUser] = useState('');
   const [textPass, setTextPass] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +45,7 @@ const Login: React.FC = ({ route }: any) => {
 
   return !isLoading || !route.params ? (
     <Container>
-      <Logo source={require('../../../assets/logo.png')} />
+      <Image source={logo} />
       <Input
         placeholder="Usuário"
         autoCompleteType="username"

@@ -8,5 +8,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true
-  }
+  },
+  "include": ["**/src/**/*.ts", "**/src/**/*.tsx"],
+  "files": ["src/@types/index.d.ts"]
 }

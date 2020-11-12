@@ -1,20 +1,17 @@
+/* eslint-disable no-console */
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList } from 'react-native';
+import { ActivityIndicator, FlatList, Route } from 'react-native';
 
-import { Document } from '../../@types';
 import api from '../../services/api';
 import { Item, Container, Text } from './style';
 
-// const Item = ({ item, onPress, style }) => (
-//   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-//     <Text style={styles.title}>{item.docNumber}</Text>
-//   </TouchableOpacity>
-// );
-
-const SearchDocs: React.FC = ({ route }: any) => {
+const SearchDocs: React.FC = ({ route }: Route) => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
+  const navigation = useNavigation();
 
   const { token } = route.params;
 
@@ -30,7 +27,9 @@ const SearchDocs: React.FC = ({ route }: any) => {
   }, []);
 
   const handleItemClick = (item: Document) => {
-    console.log(item);
+    // console.log(item);
+    setLoading(true);
+    navigation.navigate('Page3', { item });
   };
 
   return isLoading ? (

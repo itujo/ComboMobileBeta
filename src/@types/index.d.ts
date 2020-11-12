@@ -1,4 +1,4 @@
-export interface Document {
+interface Document {
   docNumber: string;
   fullName: string;
   address: string;
@@ -15,3 +15,5 @@ export interface Document {
   horaRec: Date;
   historico: string;
 }
+
+declare module '*.png';
