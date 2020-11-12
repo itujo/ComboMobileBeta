@@ -1,24 +1,43 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Image, Route, Text } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Modal } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 import api from '../../services/api';
 
-import { Button, Container, Input, TextButton } from './style';
+import {
+  Button,
+  Container,
+  Input,
+  ModalButton,
+  ModalView,
+  TextButton,
+  ModalText,
+} from './style';
 
-import logo from '../../../assets/logo.png';
+import Logo from '../../../assets/logo.png';
 
-const Login: React.FC = ({ route }: Route) => {
+const Login: React.FC = () => {
   const [textUser, setTextUser] = useState('');
   const [textPass, setTextPass] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalText, setModalText] = useState('');
 
   const navigation = useNavigation();
 
   const handleLogin = async () => {
     if (!textUser || !textUser) {
-      alert('Não deixe nenhum campo vazio');
+      setModalText('Não deixe nenhum campo vazio!');
+      setModalVisible(true);
+    } else if (!textUser) {
+      setModalText('Preencha o campo usuário');
+      setModalVisible(true);
+    } else if (!textPass) {
+      setModalText('Preencha o campo senha');
+      setModalVisible(true);
     } else {
-      setIsLoading(true);
+      setLoading(true);
       await api
         .post('/singin', {
           user: textUser,
@@ -26,28 +45,59 @@ const Login: React.FC = ({ route }: Route) => {
         })
         .then((response) => {
           const { token } = response.data;
+          setLoading(false);
 
           navigation.navigate('SearchDocs', { token });
         })
         .catch((error) => {
           if (error.response.status === 401) {
-            alert('Usuário ou senha inválido(a), tente novamente!');
-          } else {
-            console.log('Error', error.message);
+            setModalVisible(true);
           }
+          setModalText('Usuário ou senha incorreto(a), tente novamente!');
+          setModalVisible(true);
         });
     }
   };
 
-  useEffect(() => {
-    setIsLoading(false);
-  }, [route.params]);
-
-  return !isLoading || !route.params ? (
+  return (
     <Container>
-      <Image source={logo} />
+      <Modal
+        animationType="fade"
+        transparent
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+          setLoading(false);
+        }}
+      >
+        <Container>
+          <ModalView>
+            <ModalText>{modalText}</ModalText>
+
+            <ModalButton
+              onPress={() => {
+                setModalVisible(!modalVisible);
+                setLoading(false);
+              }}
+            >
+              <TextButton>Fechar</TextButton>
+            </ModalButton>
+          </ModalView>
+        </Container>
+      </Modal>
+
+      <Spinner
+        visible={loading}
+        textContent="Autenticando, aguarde..."
+        textStyle={{ color: '#fff' }}
+        color="#ff8b0d"
+        animation="fade"
+        overlayColor="rgba(0, 0, 0, 0.6)"
+      />
+      <Image source={Logo} />
       <Input
         placeholder="Usuário"
+        placeholderTextColor="gray"
         autoCompleteType="username"
         autoCapitalize="characters"
         textContentType="username"
@@ -55,6 +105,7 @@ const Login: React.FC = ({ route }: Route) => {
       />
       <Input
         placeholder="Senha"
+        placeholderTextColor="gray"
         autoCompleteType="password"
         secureTextEntry
         textContentType="password"
@@ -64,11 +115,6 @@ const Login: React.FC = ({ route }: Route) => {
       <Button onPress={handleLogin}>
         <TextButton>ENTRAR</TextButton>
       </Button>
-    </Container>
-  ) : (
-    <Container>
-      <Text>Aguarde...</Text>
-      <ActivityIndicator size="large" color="#ff8b0d" />
     </Container>
   );
 };

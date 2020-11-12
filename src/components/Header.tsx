@@ -38,9 +38,9 @@ const Header = ({ showCancel = true, title, navigation }: HeaderProps) => {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
-    backgroundColor: '#f9fafc',
+    backgroundColor: '#343a40',
     borderBottomWidth: 1,
-    borderColor: '#DDE3F0',
+    borderColor: '#343a40',
     paddingTop: 44,
 
     flexDirection: 'row',
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: 'gray',
+    color: 'lightgray',
     fontSize: 16,
   },
 });

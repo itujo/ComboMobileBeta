@@ -16,4 +16,9 @@ interface Document {
   historico: string;
 }
 
+interface ModalProps {
+  visible: boolean;
+  children: React.FC;
+}
+
 declare module '*.png';

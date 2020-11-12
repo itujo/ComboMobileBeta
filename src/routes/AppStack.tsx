@@ -15,7 +15,7 @@ const Routes: React.FC = () => (
     <Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#fff' },
+        cardStyle: { backgroundColor: '#343a40' },
       }}
     >
       <Screen name="Login" component={Login} />

@@ -2,10 +2,11 @@
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Route } from 'react-native';
+import { FlatList, Route } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import api from '../../services/api';
-import { Item, Container, Text } from './style';
+import { Item, Text } from './style';
 
 const SearchDocs: React.FC = ({ route }: Route) => {
   const [data, setData] = useState([]);
@@ -27,15 +28,19 @@ const SearchDocs: React.FC = ({ route }: Route) => {
   }, []);
 
   const handleItemClick = (item: Document) => {
-    // console.log(item);
     setLoading(true);
     navigation.navigate('Page3', { item });
   };
 
   return isLoading ? (
-    <Container>
-      <ActivityIndicator size="large" color="#ff8b0d" />
-    </Container>
+    <Spinner
+      visible={isLoading}
+      textContent="Carregando documentos..."
+      textStyle={{ color: 'white', fontWeight: 'bold' }}
+      color="#ff8b0d"
+      overlayColor="rgba(0, 0, 0, 0.6)"
+      animation="fade"
+    />
   ) : (
     <FlatList
       data={data}

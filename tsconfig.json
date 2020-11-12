@@ -9,6 +9,12 @@
     "resolveJsonModule": true,
     "strict": true
   },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ],
   "include": ["**/src/**/*.ts", "**/src/**/*.tsx"],
   "files": ["src/@types/index.d.ts"]
 }

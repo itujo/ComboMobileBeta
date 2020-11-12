@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Text = styled.Text`
-  color: #4d4843;
+  color: #343a40;
   font-size: 17px;
   padding: 7px;
 `;
@@ -13,7 +13,7 @@ export const Container = styled.View`
 `;
 
 export const Item = styled.TouchableOpacity`
-  padding: 20px;
+  padding: 5px;
   background-color: #fff;
   border: #ffc687;
   border-radius: 7px;
