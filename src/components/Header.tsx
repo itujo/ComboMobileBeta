@@ -19,7 +19,7 @@ const Header = ({ showCancel = true, title, navigation }: HeaderProps) => {
   return (
     <View style={styles.container}>
       <BorderlessButton onPress={navigation.goBack}>
-        <Feather name="arrow-left" size={24} color="#15B6D6" />
+        <Feather name="arrow-left" size={24} color="#ff8b0d" />
       </BorderlessButton>
 
       <Text style={styles.title}>{title}</Text>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#8fa7b3',
+    color: 'gray',
     fontSize: 16,
   },
 });

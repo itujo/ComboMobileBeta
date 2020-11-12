@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from '../pages/Login/Login';
-import SearchDocs from '../pages/SearchDocs/test';
+import SearchDocs from '../pages/SearchDocs/SearchDocs';
 import Header from '../components/Header';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -15,7 +15,7 @@ const Routes: React.FC = () => (
     <Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#F2F3F5' },
+        cardStyle: { backgroundColor: '#fff' },
       }}
     >
       <Screen name="Login" component={Login} />

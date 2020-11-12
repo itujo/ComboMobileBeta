@@ -45,8 +45,6 @@ const Login: React.FC = ({ route }: any) => {
     setIsLoading(false);
   }, [route.params]);
 
-  // console.log(route.params);
-
   return !isLoading || !route.params ? (
     <Container>
       <Logo source={require('../../../assets/logo.png')} />
