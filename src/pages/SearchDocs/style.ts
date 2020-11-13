@@ -5,6 +5,12 @@ export const Text = styled.Text`
   font-size: 17px;
   padding: 7px;
 `;
+export const TextQtd = styled.Text`
+  color: white;
+  font-size: 17px;
+  padding: 7px;
+  margin: auto;
+`;
 
 export const Container = styled.View`
   flex: 1;

@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface Document {
+  map(arg0: (d: any) => { value: any; label: any });
   docNumber: string;
   fullName: string;
   address: string;
