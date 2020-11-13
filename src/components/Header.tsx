@@ -12,8 +12,8 @@ interface HeaderProps extends StackHeaderProps {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Header = ({ showCancel = true, title, navigation }: HeaderProps) => {
-  function handleCancelCreateOrphanage() {
-    navigation.navigate('OrphanagesMap');
+  function handleCancel() {
+    navigation.navigate('SearchDocs');
   }
 
   return (
@@ -25,8 +25,8 @@ const Header = ({ showCancel = true, title, navigation }: HeaderProps) => {
       <Text style={styles.title}>{title}</Text>
 
       {showCancel ? (
-        <BorderlessButton onPress={handleCancelCreateOrphanage}>
-          <Feather name="x" size={24} color="#FF669D" />
+        <BorderlessButton onPress={handleCancel}>
+          <Feather name="x" size={24} color="red" />
         </BorderlessButton>
       ) : (
         <View />

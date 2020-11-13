@@ -28,8 +28,7 @@ const SearchDocs: React.FC = ({ route }: Route) => {
   }, []);
 
   const handleItemClick = (item: Document) => {
-    setLoading(true);
-    navigation.navigate('Page3', { item });
+    navigation.navigate('UploadInfo', { item });
   };
 
   return isLoading ? (
